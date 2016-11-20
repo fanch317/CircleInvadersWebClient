@@ -16,20 +16,9 @@
       WebSocket.emitAction('state', 'started');
     }
 
-    vm.pressLeft = function() {
-      $log.debug('pressLeft...');
-      WebSocket.emitAction('pressUp', 'left');
-
-    };
-    vm.pressRight = function() {
-      $log.debug('pressRight...');
-      WebSocket.emitAction('pressUp', 'right');
-
-    };
-    vm.pressFire = function() {
-      $log.debug('pressFire...');
-      WebSocket.emitAction('press', 'fire');
-
+    vm.actionKey = function(key, isPressed) {
+      $log.debug('actionKey... '+key+' ('+isPressed+')');
+      WebSocket.emitAction(key, isPressed);
     };
 
   }

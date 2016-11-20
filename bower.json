@@ -1,6 +1,6 @@
 {
-  "name": "game",
-  "version": "0.0.0",
+  "name": "circleinvaderswebclient",
+  "version": "0.0.1",
   "dependencies": {
     "angular-animate": "~1.5.3",
     "angular-cookies": "~1.5.3",

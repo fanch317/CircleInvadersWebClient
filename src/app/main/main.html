@@ -2,8 +2,8 @@
 
   <h1>Circle Invaders Web Client</h1>
 
-  <button ng-click="main.pressLeft()">Left</button>
-  <button ng-click="main.pressRight()">Right</button>
-  <button ng-click="main.pressFire()">Fire</button>
+  <button ng-mousedown="main.actionKey('Left', true)" ng-mouseup="main.actionKey('Left', false)">Left</button>
+  <button ng-mousedown="main.actionKey('Right', true)" ng-mouseup="main.actionKey('Right', false)">Right</button>
+  <button ng-mousedown="main.actionKey('Fire', true)" ng-mouseup="main.actionKey('Fire', false)">Fire</button>
 
 </div>

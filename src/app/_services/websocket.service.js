@@ -2,27 +2,28 @@
   'use strict';
 
   angular.module('game')
-  .service('WebSocket', function($log, $websocket) {
-    // Open a WebSocket connection
+  .service('WebSocket', function($log) {
 
-    var dataStream = null;
     var socketIo = null;
     var setupDone = false;
 
     if(!setupDone) {
-      dataStream = $websocket.$new('ws://localhost:3000/game');
-      socketIo = io.connect('http://localhost:3000/game');
+      socketIo = io.connect('http://localhost:3000/client');
+      setupDone = true;
     }
 
+    socketIo.on('message', function(message) {
+        $log.debug('Receive message');
+        $log.debug(message);
+    });
+
+    //Send a message to lobby
     this.emitAction = function(key, value) {
-      dataStream.$emit(key, value);
-      socketIo.emit('message', { key: value });
-      $log.debug(socketIo);
+      var action = {};
+      action[key] = value;
+      socketIo.emit('message', action);
     };
 
-
-
   });
-
 
 })();
