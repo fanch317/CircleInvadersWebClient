@@ -6,34 +6,31 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($log, WebSocket) {
     var vm = this;
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1479570547728;
-    vm.showToastr = showToastr;
 
     activate();
 
     function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+      WebSocket.emitAction('state', 'started');
     }
 
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
+    vm.pressLeft = function() {
+      $log.debug('pressLeft...');
+      WebSocket.emitAction('pressUp', 'left');
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
+    };
+    vm.pressRight = function() {
+      $log.debug('pressRight...');
+      WebSocket.emitAction('pressUp', 'right');
 
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
+    };
+    vm.pressFire = function() {
+      $log.debug('pressFire...');
+      WebSocket.emitAction('press', 'fire');
+
+    };
+
   }
 })();
