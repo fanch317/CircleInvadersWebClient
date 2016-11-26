@@ -8,7 +8,7 @@
     var setupDone = false;
 
     if(!setupDone) {
-      socketIo = io.connect('http://localhost:3000/client');
+      socketIo = io.connect('http://192.168.0.22:3000/client');
       setupDone = true;
     }
 
